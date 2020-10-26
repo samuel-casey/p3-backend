@@ -1,3 +1,4 @@
+require('dotenv').config()
 const Quote = require('../models/quotes');
 const { Router } = require('express');
 const router = Router();
