@@ -37,6 +37,7 @@ app.get('/', (req, res) => {
 app.get('/', auth, (req, res) => {
 	res.json(req.payload)
 })
+
 app.use('/auth', AuthRouter)
 app.use('/quote', QuoteRouter)
 
