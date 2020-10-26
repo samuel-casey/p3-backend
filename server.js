@@ -1,12 +1,12 @@
 // imports
 const express = require('express');
 const morgan = require('morgan');
-const mongoose = require('./db/connection')
+const mongoose = require('./db/connection');
 const cors = require('cors');
 const corsOptions = require('./configs/cors');
 require('dotenv').config();
-const AuthRouter = require('./controllers/user')
-const auth = require('./auth')
+const AuthRouter = require('./controllers/user');
+const auth = require('./auth');
 
 // Server instance
 const app = express();
@@ -22,17 +22,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev')); //logging
 
 // Routes and Routers
-// Route for testing server is working
+Route for testing server is working
 app.get('/', (req, res) => {
 	res.json({
 		hello: 'Hello World! Take care of yourself today.',
 	});
 });
 
+app.use('/auth', AuthRouter);
+
 app.get('/', auth, (req, res) => {
-	res.json(req.payload)
-})
-app.use('/auth', AuthRouter)
+	res.json(req.payload);
+});
 
 //LISTENER
 app.listen(PORT, () => {
