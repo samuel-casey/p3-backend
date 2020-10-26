@@ -5,8 +5,10 @@ const mongoose = require('./db/connection');
 const cors = require('cors');
 const corsOptions = require('./configs/cors');
 require('dotenv').config();
-const AuthRouter = require('./controllers/user');
-const auth = require('./auth');
+
+const AuthRouter = require('./controllers/user')
+const QuoteRouter = require('./controllers/quotes')
+const auth = require('./auth')
 
 // Server instance
 const app = express();
@@ -33,11 +35,12 @@ app.get('/', (req, res) => {
 	});
 });
 
-app.use('/auth', AuthRouter);
-
 app.get('/', auth, (req, res) => {
-	res.json(req.payload);
-});
+	res.json(req.payload)
+})
+
+app.use('/auth', AuthRouter)
+app.use('/quote', QuoteRouter)
 
 //LISTENER
 app.listen(PORT, () => {
