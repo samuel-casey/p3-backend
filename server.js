@@ -7,6 +7,7 @@ const corsOptions = require('./configs/cors');
 require('dotenv').config();
 const AuthRouter = require('./controllers/user');
 const auth = require('./auth');
+const selfCareRouter = require('./controllers/wishlist')
 
 // Server instance
 const app = express();
@@ -38,6 +39,9 @@ app.use('/auth', AuthRouter);
 app.get('/', auth, (req, res) => {
 	res.json(req.payload);
 });
+
+app.use('/auth/wishList', selfCareRouter);
+
 
 //LISTENER
 app.listen(PORT, () => {
