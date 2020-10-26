@@ -2,7 +2,8 @@
 // IN dev mode "npm run dev" any source can make a request
 var whitelist = [
 	'https://self-care-app.netlify.app/',
-	'https://self-care-app-backend.herokuapp.com',
+	'https://self-care-app-backend.herokuapp.com/',
+	'http://localhost:4000/',
 ];
 
 var corsOptions = {
