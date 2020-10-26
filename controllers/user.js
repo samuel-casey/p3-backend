@@ -18,12 +18,12 @@ router.post('/signup', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 	try {
-		const { username, password } = req.body;
-		const user = await User.findOne({ username });
+		const { email, password } = req.body;
+		const user = await User.findOne({ email });
 		if (user) {
 			const match = await bcrypt.compare(password, user.password);
 			if (match) {
-				const token = await jwt.sign({ username }, SECRET);
+				const token = await jwt.sign({ email }, SECRET);
 				res.status(200).json({ token });
 			} else {
 				res.status(400).json({ error: 'PASSWORD DOES NOT MATCH' });
