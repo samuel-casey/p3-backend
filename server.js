@@ -5,7 +5,6 @@ const mongoose = require('./db/connection');
 const cors = require('cors');
 const corsOptions = require('./configs/cors');
 require('dotenv').config();
-
 const AuthRouter = require('./controllers/user')
 const QuoteRouter = require('./controllers/quotes')
 const auth = require('./auth')

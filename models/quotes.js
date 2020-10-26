@@ -4,7 +4,7 @@ const quoteSchema = new Schema(
 		quote: String,
 		theme: String,
 		author: String,
-		isFavorite: Boolean,
+		isFavorite: {type: Boolean, default: false}
 	},
 	{ timestamps: true }
 );
