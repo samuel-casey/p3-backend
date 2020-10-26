@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev')); //logging
 
 // Routes and Routers
-Route for testing server is working
+// Route for testing server is working
 app.get('/', (req, res) => {
 	res.json({
 		hello: 'Hello World! Take care of yourself today.',
