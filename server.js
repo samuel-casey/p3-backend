@@ -5,20 +5,21 @@ const mongoose = require('./db/connection');
 const cors = require('cors');
 const corsOptions = require('./configs/cors');
 require('dotenv').config();
-const AuthRouter = require('./controllers/user')
+const AuthRouter = require('./controllers/user');
+const auth = require('./auth');
+const selfCareRouter = require('./controllers/wishlist')
 const QuoteRouter = require('./controllers/quotes')
-const auth = require('./auth')
 
 // Server instance
 const app = express();
 
 // ENV Variables
 const { PORT, NODE_ENV } = process.env;
-// const PORT = process.env.PORT || 5000;
 
 // Middleware
 // LEAVING CORS OPTIONS FOR POST-MVP
 // app.use(NODE_ENV === 'production' ? cors(corsOptions) : cors());
+// cors() always enabled for development (MVP)
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,6 +41,8 @@ app.get('/', auth, (req, res) => {
 
 app.use('/auth', AuthRouter)
 app.use('/quote', QuoteRouter)
+app.use('/auth/wishList', selfCareRouter);
+
 
 //LISTENER
 app.listen(PORT, () => {

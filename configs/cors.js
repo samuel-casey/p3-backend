@@ -1,6 +1,6 @@
 // The White List Array are urls allowed to make API requests in production mode
 // IN dev mode "npm run dev" any source can make a request
-var whitelist = [
+ var whitelist = [
 	'https://self-care-app.netlify.app/',
 	'https://self-care-app-backend.herokuapp.com/',
 	'http://localhost:4000/',
