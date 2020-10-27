@@ -7,8 +7,8 @@ const corsOptions = require('./configs/cors');
 require('dotenv').config();
 const AuthRouter = require('./controllers/user');
 const auth = require('./auth');
-const selfCareRouter = require('./controllers/wishlist')
-const QuoteRouter = require('./controllers/quotes')
+const selfCareRouter = require('./controllers/wishlist');
+const QuoteRouter = require('./controllers/quotes');
 
 // Server instance
 const app = express();
@@ -36,13 +36,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/', auth, (req, res) => {
-	res.json(req.payload)
-})
+	res.json(req.payload);
+});
 
-app.use('/auth', AuthRouter)
-app.use('/quote', QuoteRouter)
-app.use('/auth/wishList', selfCareRouter);
-
+app.use('/auth', AuthRouter);
+app.use('/quote', QuoteRouter);
+app.use('/wishlist', selfCareRouter);
 
 //LISTENER
 app.listen(PORT, () => {
