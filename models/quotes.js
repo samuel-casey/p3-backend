@@ -1,3 +1,6 @@
+const mongoose = require("../db/connection");
+const {Schema, model} = require("mongoose");
+
 const quoteSchema = new Schema(
     {
       quote: String,

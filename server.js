@@ -8,6 +8,7 @@ require('dotenv').config();
 const AuthRouter = require('./controllers/user');
 const auth = require('./auth');
 const selfCareRouter = require('./controllers/wishlist')
+const QuoteRouter = require('./controllers/quotes')
 
 // Server instance
 const app = express();
