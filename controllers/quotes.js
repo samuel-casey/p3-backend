@@ -1,27 +1,33 @@
-const {Router} = require("express")
-const router = Router();
-const auth = require('../auth');
+require('dotenv').config();
 const Quote = require('../models/quotes');
+const { Router } = require('express');
+const router = Router();
 
-
-router.get("/", auth, async (req, res) => {
-  res.json(await Quote.find({}));
+//index route
+router.get('/', async (req, res) => {
+	res.json(await Quote.find({}));
 });
 
-router.post("/", auth, async (req, res) => {
-res.json(await Quote.create(req.body));
+//route to find a single quote
+router.get('/:id', async (req, res) => {
+	res.json(await Quote.findById(req.params.id));
 });
 
-router.get('/:id', auth, async (req, res) => {
-    res.json(await Quote.findById(req.params.id));
+//create route
+router.post('/', async (req, res) => {
+	res.json(await Quote.create(req.body));
 });
 
-router.put('/:id', auth, async (req, res) => {
-res.json(await Quote.findByIdAndUpdate(req.params.id, req.body, {new:true}));
+//update route
+router.put('/:id', async (req, res) => {
+	res.json(
+		await Quote.findByIdAndUpdate(req.params.id, req.body, { new: true })
+	);
 });
 
-router.delete("/id:", auth, async (req, res) => {
-res.json(await Quote.findByIdAndRemove(req.params.id));
+//delete route
+router.delete('/:id', async (req, res) => {
+	res.json(await Quote.findByIdAndRemove(req.params.id));
 });
 
 module.exports = router;

@@ -15,12 +15,12 @@ const app = express();
 
 // ENV Variables
 const { PORT, NODE_ENV } = process.env;
-// const PORT = process.env.PORT || 5000;
 
 // Middleware
 // LEAVING CORS OPTIONS FOR POST-MVP
 // app.use(NODE_ENV === 'production' ? cors(corsOptions) : cors());
-// app.use(cors());
+// cors() always enabled for development (MVP)
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev')); //logging
@@ -36,14 +36,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/', auth, (req, res) => {
-	res.json(req.payload);
-});
+	res.json(req.payload)
+})
 
-app.use('/auth', AuthRouter);
-
+app.use('/auth', AuthRouter)
+app.use('/quote', QuoteRouter)
 app.use('/auth/wishList', selfCareRouter);
-
-app.use('/auth/favorites', QuoteRouter)
 
 
 //LISTENER
