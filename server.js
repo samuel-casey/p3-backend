@@ -19,7 +19,7 @@ const { PORT, NODE_ENV } = process.env;
 // Middleware
 // LEAVING CORS OPTIONS FOR POST-MVP
 // app.use(NODE_ENV === 'production' ? cors(corsOptions) : cors());
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev')); //logging
@@ -34,13 +34,15 @@ app.get('/', (req, res) => {
 	});
 });
 
-app.use('/auth', AuthRouter);
-
 app.get('/', auth, (req, res) => {
 	res.json(req.payload);
 });
 
+app.use('/auth', AuthRouter);
+
 app.use('/auth/wishList', selfCareRouter);
+
+app.use('/auth/favorites', QuoteRouter)
 
 
 //LISTENER

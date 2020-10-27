@@ -1,15 +1,16 @@
 const mongoose = require("../db/connection");
 const {Schema, model} = require("mongoose");
+const users = require("./user")
 
 const SelfCareItemSchema = new Schema({
-  Category: String,
+
+  category: String,
+  title: {type: String, required: true},
   time_minutes: Number,
-  isComplete: Boolean,
-  isLiked: Boolean,
-  user: {
-    ref: "user",
-    type: mongoose.Schema.Types.ObjectId,
-  },
+  isComplete: {type: Boolean, default: false},
+  isLiked: {type: Boolean, default: false},
+  email: {type: String, required: true}
+
 });
 {
   timestamps: true;
