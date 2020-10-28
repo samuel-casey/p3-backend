@@ -6,6 +6,7 @@ const { Router } = require('express');
 const router = Router();
 const { SECRET } = process.env;
 
+// NEED TO USE THIS FOR DEMO USER TOO
 router.post('/signup', async (req, res) => {
 	try {
 		req.body.password = await bcrypt.hash(req.body.password, 10);
@@ -16,6 +17,7 @@ router.post('/signup', async (req, res) => {
 	}
 });
 
+// NEED TO USE THIS FOR DEMO USER TOO
 router.post('/login', async (req, res) => {
 	try {
 		const { email, password } = req.body;
