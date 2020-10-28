@@ -38,35 +38,31 @@ router.post('/login', async (req, res) => {
 	}
 });
 
-// CAN YOU UPDATE A USER?
-router.put('/:id', async (req, res) => {
-	const quote = req.body;
-	const userId = req.params.id;
+router.put('/favs', async (req, res) => {
+	const quoteId = req.body.quoteId;
+	const userEmail = req.body.email;
+
 	let removedQuote = null;
 	let addedQuote = null;
 
 	try {
-		const userData = await User.findById(userId);
-		const userFavs = userData.favsList;
+		const userData = await User.findOne({ email: userEmail });
+		const userFavs = await userData.favsList;
 
-		console.log(quote);
-		console.log(userFavs);
-		console.log(userFavs.indexOf(quote));
-
-		if (userFavs.indexOf(quote._id) !== -1) {
+		if (userFavs.indexOf(quoteId) !== -1) {
 			console.log('already there');
-			removedQuote = await User.findByIdAndUpdate(
-				userId,
+			removedQuote = await User.findOneAndUpdate(
+				{ email: userEmail },
 				// addToSet to add an new fav quote, pullAll to remove a no-longer fav quote
-				{ $pullAll: { favsList: [quote] } },
+				{ $pullAll: { favsList: [quoteId] } },
 				{ new: true }
 			);
 		} else {
 			console.log('not there');
-			addedQuote = await User.findByIdAndUpdate(
-				userId,
+			addedQuote = await User.findOneAndUpdate(
+				{ email: userEmail },
 				// addToSet to add an new fav quote, pullAll to remove a no-longer fav quote
-				{ $addToSet: { favsList: [quote] } },
+				{ $addToSet: { favsList: [quoteId] } },
 				{ new: true }
 			);
 		}
