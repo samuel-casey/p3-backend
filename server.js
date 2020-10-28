@@ -9,6 +9,7 @@ const AuthRouter = require('./controllers/user');
 const auth = require('./auth');
 const selfCareRouter = require('./controllers/wishlist');
 const QuoteRouter = require('./controllers/quotes');
+const DemoRouter = require('./controllers/demo');
 
 // Server instance
 const app = express();
@@ -42,6 +43,7 @@ app.get('/', auth, (req, res) => {
 app.use('/auth', AuthRouter);
 app.use('/quote', QuoteRouter);
 app.use('/wishlist', selfCareRouter);
+app.use('/demo', DemoRouter);
 
 //LISTENER
 app.listen(PORT, () => {

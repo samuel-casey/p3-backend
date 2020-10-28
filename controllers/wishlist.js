@@ -39,14 +39,14 @@ router.get('/:id', auth, async (req, res) => {
 router.put('/:id', auth, async (req, res) => {
 	try {
 		const { id } = req.params;
-		const { updates } = req.body;
-		console.log(updates);
+		const updates = req.body;
 		const updatedItem = await SelfCareItem.findByIdAndUpdate(
 			id,
-			{ updates },
+			{ ...updates },
 			{ new: true }
 		);
 		res.status(200).json(updatedItem);
+		res.end();
 	} catch (error) {
 		res.status(400).json({ error });
 	}
