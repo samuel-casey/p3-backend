@@ -38,7 +38,11 @@ router.post('/login', async (req, res) => {
 	}
 });
 
-// CAN YOU UPDATE A USER?
+// Check if user has already favorited quote and update their favsList array accordingly
+//// find user by id
+//// find user's fav list array
+//// remove quote's id from favsList if already in array
+//// add quote's id to favsList if not already in array
 router.put('/:id', async (req, res) => {
 	const quote = req.body;
 	const userId = req.params.id;
