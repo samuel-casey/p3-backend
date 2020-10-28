@@ -38,4 +38,47 @@ router.post('/login', async (req, res) => {
 	}
 });
 
+// CAN YOU UPDATE A USER?
+router.put('/:id', async (req, res) => {
+	const quote = req.body;
+	const userId = req.params.id;
+	let removedQuote = null;
+	let addedQuote = null;
+
+	try {
+		const userData = await User.findById(userId);
+		const userFavs = userData.favsList;
+
+		console.log(quote);
+		console.log(userFavs);
+		console.log(userFavs.indexOf(quote));
+
+		if (userFavs.indexOf(quote._id) !== -1) {
+			console.log('already there');
+			removedQuote = await User.findByIdAndUpdate(
+				userId,
+				// addToSet to add an new fav quote, pullAll to remove a no-longer fav quote
+				{ $pullAll: { favsList: [quote] } },
+				{ new: true }
+			);
+		} else {
+			console.log('not there');
+			addedQuote = await User.findByIdAndUpdate(
+				userId,
+				// addToSet to add an new fav quote, pullAll to remove a no-longer fav quote
+				{ $addToSet: { favsList: [quote] } },
+				{ new: true }
+			);
+		}
+
+		if (removedQuote !== null) {
+			res.status(200).json(removedQuote);
+		} else if (addedQuote !== null) {
+			res.status(200).json(addedQuote);
+		}
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 module.exports = router;
