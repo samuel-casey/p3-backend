@@ -10,6 +10,8 @@ const SelfCareItemSchema = new Schema(
 		isComplete: { type: Boolean, default: false },
 		isLiked: { type: Boolean, default: false },
 		email: { type: String, required: true },
+		// this flag is used to check if an item belongs to an email with the format: `demo${number}@app.com`
+		isDemo: { type: Boolean, required: false, default: false },
 	},
 	{ timestamps: true }
 );
