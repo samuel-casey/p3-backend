@@ -2,6 +2,7 @@ const User = require('../models/user');
 const { Router } = require('express');
 const router = Router();
 const auth = require('../auth');
+const SelfCareItem = require('../models/selfcare');
 
 const seedData = require('../db/demoSeed.json');
 router.post('/seed', auth, async (req, res) => {
