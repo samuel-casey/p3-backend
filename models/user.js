@@ -8,6 +8,7 @@ const userSchema = new Schema(
 		password: { type: String, required: true },
 		favsList: [{ ref: 'Quote', type: Schema.Types.ObjectId }],
 		likedList: [{ ref: 'SelfCareItem', type: Schema.Types.ObjectId }],
+		isDemo: { type: Boolean, default: false },
 	},
 	{ timestamps: true }
 );

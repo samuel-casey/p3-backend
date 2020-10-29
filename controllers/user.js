@@ -6,6 +6,7 @@ const { Router } = require('express');
 const router = Router();
 const { SECRET } = process.env;
 
+// NEED TO USE THIS FOR DEMO USER TOO
 router.post('/signup', async (req, res) => {
 	try {
 		req.body.password = await bcrypt.hash(req.body.password, 10);
@@ -16,6 +17,7 @@ router.post('/signup', async (req, res) => {
 	}
 });
 
+// NEED TO USE THIS FOR DEMO USER TOO
 router.post('/login', async (req, res) => {
 	try {
 		const { email, password } = req.body;
@@ -33,6 +35,50 @@ router.post('/login', async (req, res) => {
 		}
 	} catch (error) {
 		res.status(400).json({ error });
+	}
+});
+
+// Check if user has already favorited quote and update their favsList array accordingly
+//// find user by id
+//// find user's fav list array
+//// remove quote's id from favsList if already in array
+//// add quote's id to favsList if not already in array
+router.put('/favs', async (req, res) => {
+	const quoteId = req.body.quoteId;
+	const userEmail = req.body.email;
+
+	let removedQuote = null;
+	let addedQuote = null;
+
+	try {
+		const userData = await User.findOne({ email: userEmail });
+		const userFavs = await userData.favsList;
+
+		if (userFavs.indexOf(quoteId) !== -1) {
+			console.log('already there');
+			removedQuote = await User.findOneAndUpdate(
+				{ email: userEmail },
+				// addToSet to add an new fav quote, pullAll to remove a no-longer fav quote
+				{ $pullAll: { favsList: [quoteId] } },
+				{ new: true }
+			);
+		} else {
+			console.log('not there');
+			addedQuote = await User.findOneAndUpdate(
+				{ email: userEmail },
+				// addToSet to add an new fav quote, pullAll to remove a no-longer fav quote
+				{ $addToSet: { favsList: [quoteId] } },
+				{ new: true }
+			);
+		}
+
+		if (removedQuote !== null) {
+			res.status(200).json(removedQuote);
+		} else if (addedQuote !== null) {
+			res.status(200).json(addedQuote);
+		}
+	} catch (error) {
+		console.log(error);
 	}
 });
 
