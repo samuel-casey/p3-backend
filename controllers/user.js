@@ -52,6 +52,7 @@ router.put('/favs', async (req, res) => {
 
 	try {
 		const userData = await User.findOne({ email: userEmail });
+		console.log(userData);
 		const userFavs = await userData.favsList;
 
 		if (userFavs.indexOf(quoteId) !== -1) {

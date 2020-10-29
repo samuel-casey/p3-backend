@@ -2,26 +2,27 @@ const User = require('../models/user');
 const { Router } = require('express');
 const router = Router();
 const auth = require('../auth');
+const SelfCareItem = require('../models/selfcare');
 
-
-const seedData = require('../db/demoSeed.json')
+const seedData = require('../db/demoSeed.json');
 router.post('/seed', auth, async (req, res) => {
-	try{		
-	const demoEmail = req.payload.email;
-	//loop over seedData
-	//find email key
-	//update email key with demo user email
-	// for(let item of seedData) {
-		for(let item =0; item < seedData.length; item++){
-		seedData[item].email = demoEmail
+	try {
+		const demoEmail = req.payload.email;
+		//loop over seedData
+		//find email key
+		//update email key with demo user email
+		// for(let item of seedData) {
+		for (let item = 0; item < seedData.length; item++) {
+			seedData[item].email = demoEmail;
 		}
-		
-		const demoWishList = await SelfCareItem.create(seedData)
-	
-		res.status(200).json(demoWishList)
+
+		const demoWishList = await SelfCareItem.create(seedData);
+
+		res.status(200).json(demoWishList);
 	} catch (error) {
-		console.log(error)
-}})
+		console.log(error);
+	}
+});
 
 // create a new item for demo user
 router.get('/', async (req, res) => {
