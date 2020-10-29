@@ -1,0 +1,58 @@
+[
+    {
+        "category": "Positivity",
+        "title": "Write down three things you are grateful for",
+        "time_minutes": 5,
+        "isComplete": false,
+        "isLiked": true,
+        "isDemo": true
+    },
+    {
+		"category": "Refocus",
+		"title": "Meditate",
+		"time_minutes": 10,
+		"isComplete": false,
+		"isLiked": false,
+		"isDemo": true
+    },
+    {
+        "category": "Exercise",
+        "title": "Yoga",
+        "time_minutes": 30,
+        "isComplete": true,
+        "isLiked": false,
+        "isDemo": true
+    },
+    {
+        "category": "Exercise",
+        "title": "Go for a walk",
+        "time_minutes": 30,
+        "isComplete": false,
+        "isLiked": false,
+        "isDemo": true
+    },
+    {
+        "category": "Positivity",
+        "title": "Write down one thing that made you smile",
+        "time_minutes": 2,
+        "isComplete": true,
+        "isLiked": false,
+        "isDemo": true
+    },
+    {
+        "category": "Positivity",
+        "title": "Write down three thing that went well this week",
+        "time_minutes": 5,
+        "isComplete": false,
+        "isLiked": false,
+        "isDemo": true
+    },
+    {
+        "category": "Connection",
+        "title": "Send a message or call someone to thank them for something they did for you",
+        "time_minutes": 10,
+        "isComplete": false,
+        "isLiked": false,
+        "isDemo": true
+    }
+]
