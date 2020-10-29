@@ -15,8 +15,6 @@ router.post('/seed', auth, async (req, res) => {
 		for(let item =0; item < seedData.length; item++){
 		seedData[item].email = demoEmail
 		}
-		console.log('seedData', seedData)
-		console.log('length of seedData', seedData.length)
 		
 		const demoWishList = await SelfCareItem.create(seedData)
 	
@@ -30,7 +28,6 @@ router.get('/', async (req, res) => {
 	try {
 		const demoUsers = await User.find({ isDemo: true });
 		const numDemoUsers = demoUsers.length;
-		console.log(numDemoUsers);
 		res.status(200).json(numDemoUsers);
 	} catch (error) {
 		res.status(400).json({ error });
