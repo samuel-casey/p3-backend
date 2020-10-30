@@ -1,12 +1,10 @@
-# p3-backend
+# pause.app backend
 
 ## Description:
 
-A very practical App that is based progressing ones personal development and progression, lifestyle and organizational skills.
+pause.app helps people organize their lives and collect their thoughts around self-care. pause.app is designed for busy people who want help finding balance and being more intentional withtheir time.
 
-The alpha version of the app will contain user generated content: a self care goal/wish list, and a list of self care tasks they've completed. User will be able to mark goals complete, and upon completion receive words of affirmation. The App will allow have a sign up/login feature to help make each experience unique to the individual  user. 
-
-The beta version will include a filterable task list, showing tasks based on the time of the task or the activity.   It will also include filters/moderations for the available quotes. Examples would include a favorite quotes, motivational quotes, quotes for completed and uncompleted items.
+[live site](https://pause-app.netlify.app)
 
 ---
 
