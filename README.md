@@ -2,7 +2,7 @@
 
 ## Description:
 
-pause.app helps people organize their lives and collect their thoughts around self-care. pause.app is designed for busy people who want help finding balance and being more intentional withtheir time.
+pause.app helps people organize their lives and collect their thoughts around self-care. pause.app is designed for busy people who want help finding balance and being more intentional with their time.
 
 [live site](https://pause-app.netlify.app)
 
