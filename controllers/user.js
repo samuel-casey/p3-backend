@@ -87,14 +87,17 @@ router.put('/favs', async (req, res) => {
 // .populate() favsList
 // send back only favsList as json
 
-router.get('/favs', async (req, res) => {
+router.put('/getFavs', async (req, res) => {
 	const userEmail = req.body.email;
+	console.log('userEmail', userEmail);
 
 	try {
 		const userData = await User.findOne({ email: userEmail }).populate(
 			'favsList'
 		);
+		console.log('userData', userData);
 		const userFavQuotes = userData.favsList;
+		console.log(userFavQuotes);
 		res.status(200).json(userFavQuotes);
 	} catch (error) {
 		console.log(error);
